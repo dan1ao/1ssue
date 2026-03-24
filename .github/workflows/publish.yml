@@ -37,17 +37,17 @@ jobs:
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+      # 先装 pnpm（用 runner 预装的 node）
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v5.0.0
 
-      - name: SetUp node
+      # 再切换 node 版本 + 写入 .npmrc（最后写，不会被覆盖）
+      - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: 24.x
           registry-url: 'https://registry.npmjs.org'
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v5.0.0
-        with:
-          cache: true
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install
@@ -76,7 +76,7 @@ jobs:
           publish=$(git rev-parse HEAD)
           current=${{github.sha}}
           tags=$(git tag --list --contains $publish)
-          if [ "$current" != "$publish" ] && [ -n "tags" ]; then
+          if [ "$current" != "$publish" ] && [ -n "$tags" ]; then
             echo "versions="$(echo "$tags" | sed 's/@1ssue/{0}@1ssue/g')"" >> $GITHUB_OUTPUT
           fi
 
