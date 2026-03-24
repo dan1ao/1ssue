@@ -5,12 +5,12 @@
   "type": "module",
   "scripts": {
     "build": "lerna run build",
-    "beta-version": "lerna version --conventional-commits --conventional-prerelease --preid next --yes",
-    "beta-publish": "lerna publish from-git --dist-tag next --yes",
-    "beta": "pnpm run build && pnpm run beta-version && pnpm run beta-publish",
+    "next-version": "lerna version --conventional-commits --conventional-prerelease --preid next --yes",
+    "next-publish": "lerna publish from-git --dist-tag next --yes",
+    "next": "pnpm run build && pnpm run next-version && pnpm run next-publish",
     "release-version": "lerna version --conventional-commits --conventional-graduate --yes",
     "release-publish": "lerna publish from-git --yes",
-    "release": "pnpm run build && pnpm run beta-version && pnpm run beta-publish"
+    "release": "pnpm run build && pnpm run release-version && pnpm run release-publish"
   },
   "devDependencies": {
     "@eslint-react/eslint-plugin": "^3.0.0",
