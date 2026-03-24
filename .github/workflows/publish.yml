@@ -24,8 +24,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           # 0 indicates all history for all branches and tags，保留所有历史，为了让lerna publish 时可以生成有效的change log
-          fetch-depth: '0'
+          fetch-depth: 0
+          fetch-tags: true # ← 显式声明拉取 tags
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Debug git tags
+        run: |
+          git tag --points-at HEAD    # 查看当前 HEAD 上有哪些 tag
+          git log --oneline -5        # 查看最近几次提交
 
         # lerna publish 后会提交代码到master分支，这里是为了配置 git 用户，区分用户
       - run: |
