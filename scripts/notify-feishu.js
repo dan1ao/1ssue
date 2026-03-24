@@ -8,8 +8,6 @@ const {
   BUILD_RUN_URL,
 } = process.env
 
-console.log('process.env', process.env)
-
 function request(url, body) {
   return new Promise((resolve, reject) => {
     const data = JSON.stringify(body)
