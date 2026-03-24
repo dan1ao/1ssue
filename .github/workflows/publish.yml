@@ -5,7 +5,7 @@ on:
       - next
       - release
     paths:
-      - 'packages/config/*'
+      - 'packages/**/*'
       - 'pnpm-lock.yaml'
 
 env:
@@ -43,7 +43,7 @@ jobs:
       - name: Setup credentials
         # lerna publish 后会提交代码到master分支，这里是为了配置 git 用户，区分用户
         run: |
-          git config --global user.name ci
+          git config --global user.name @github/ci
 
       - name: Build
         id: build
