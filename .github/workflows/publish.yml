@@ -20,6 +20,18 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
+      - name: debug env
+        run: |
+          echo "FEISHU_WEBHOOK_URL=${FEISHU_WEBHOOK_URL}"
+        env:
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+
+      - name: debug env
+        run: |
+          echo "ACCESS_TOKEN=${ACCESS_TOKEN}"
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
