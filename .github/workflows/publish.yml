@@ -56,49 +56,19 @@ jobs:
         id: build
         run: pnpm run build
 
-      - name: NPM preflight
-        if: github.ref_name == 'next' || github.ref_name == 'release'
-        run: |
-          echo "node=$(node -v)"
-          echo "pnpm=$(pnpm -v)"
-          echo "npm=$(npm -v)"
-          echo "token_length=${#NODE_AUTH_TOKEN}"
-          npm config set //registry.npmjs.org/:_authToken "${NODE_AUTH_TOKEN}"
-          echo "default_registry=$(npm config get registry)"
-          echo "scope_registry=$(npm config get @1ssue:registry)"
-          npm whoami
-          npm ping
-          npm view @1ssue/browserslist-config versions --json
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
-
       - name: Publish next
         if: github.ref_name == 'next'
-        run: |
-          npm config set //registry.npmjs.org/:_authToken "${NODE_AUTH_TOKEN}"
-          pnpm run next
+        run: pnpm run next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish release
         if: github.ref_name == 'release'
-        run: |
-          npm config set //registry.npmjs.org/:_authToken "${NODE_AUTH_TOKEN}"
-          pnpm run release
+        run: pnpm run release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: NPM debug on failure
-        if: failure() && (github.ref_name == 'next' || github.ref_name == 'release')
-        run: |
-          echo "token_length=${#NODE_AUTH_TOKEN}"
-          npm config list
-          npm whoami || true
-          npm view @1ssue/browserslist-config versions --json || true
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
 
       - name: Get Info
         id: info
