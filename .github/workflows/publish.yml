@@ -25,29 +25,24 @@ jobs:
         with:
           # 0 indicates all history for all branches and tags，保留所有历史，为了让lerna publish 时可以生成有效的change log
           fetch-depth: 0
-          fetch-tags: true # ← 显式声明拉取 tags
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Debug git tags
-        run: |
-          git tag --points-at HEAD    # 查看当前 HEAD 上有哪些 tag
-          git log --oneline -5        # 查看最近几次提交
 
         # lerna publish 后会提交代码到master分支，这里是为了配置 git 用户，区分用户
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-      # 先装 pnpm（用 runner 预装的 node）
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v5.0.0
 
-      # 再切换 node 版本 + 写入 .npmrc（最后写，不会被覆盖）
-      - name: Setup node
+      - name: SetUp node
         uses: actions/setup-node@v4
         with:
           node-version: 24.x
           registry-url: 'https://registry.npmjs.org'
           cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v5.0.0
+        with:
+          cache: true
 
       - name: Install dependencies
         run: pnpm install
