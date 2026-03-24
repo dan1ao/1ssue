@@ -1,4 +1,4 @@
-const https = import('https')
+import https from 'https'
 
 const {
   FEISHU_WEBHOOK_URL, // 飞书机器人 Webhook 地址
@@ -7,6 +7,8 @@ const {
   BUILD_REF,
   BUILD_RUN_URL,
 } = process.env
+
+console.log('process.env', process.env)
 
 function request(url, body) {
   return new Promise((resolve, reject) => {
@@ -98,7 +100,9 @@ function request(url, body) {
     }
 
     const res = await request(FEISHU_WEBHOOK_URL, body)
-    if (res.code !== 0) throw new Error(`发送失败: ${JSON.stringify(res)}`)
+    if (res.code !== 0) {
+      throw new Error(`发送失败: ${JSON.stringify(res)}`)
+    }
     console.log('🎉 飞书通知发送完成')
   } catch (err) {
     console.error('飞书通知失败:', err.message)
