@@ -56,6 +56,13 @@ jobs:
         id: build
         run: pnpm run build
 
+      - name: Test npm publish directly
+        run: |
+          cd packages/config/browserslist
+          npm publish --access public --tag next --dry-run
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+
       - name: Publish next
         if: github.ref_name == 'next'
         run: pnpm run next
