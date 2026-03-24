@@ -1,4 +1,4 @@
-const https = require('https')
+const https = import('https')
 
 const {
   FEISHU_WEBHOOK_URL, // 飞书机器人 Webhook 地址
