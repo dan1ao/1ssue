@@ -1,4 +1,7 @@
 name: Publish Packages
+permissions:
+  contents: write
+
 on:
   push:
     branches:
@@ -6,6 +9,7 @@ on:
       - release
     paths:
       - 'packages/**/*'
+      - 'app/**/*'
       - 'pnpm-lock.yaml'
       - 'package.json'
 
@@ -21,6 +25,12 @@ jobs:
         with:
           # 0 indicates all history for all branches and tags，保留所有历史，为了让lerna publish 时可以生成有效的change log
           fetch-depth: '0'
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+        # lerna publish 后会提交代码到master分支，这里是为了配置 git 用户，区分用户
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: SetUp node
         uses: actions/setup-node@v4
@@ -40,11 +50,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Setup credentials
-        # lerna publish 后会提交代码到master分支，这里是为了配置 git 用户，区分用户
-        run: |
-          git config --global user.name @github/ci
 
       - name: Build
         id: build
