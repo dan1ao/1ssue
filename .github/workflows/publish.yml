@@ -1,0 +1,97 @@
+name: Publish Packages
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - next
+      - release
+    paths:
+      - 'packages/**/*'
+      - 'app/**/*'
+      - 'pnpm-lock.yaml'
+      - 'package.json'
+
+env:
+  PNPM_CACHE_FOLDER: .pnpm-store
+jobs:
+  publish:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # 0 indicates all history for all branches and tags，保留所有历史，为了让lerna publish 时可以生成有效的change log
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+        # lerna publish 后会提交代码到master分支，这里是为了配置 git 用户，区分用户
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: SetUp node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v5.0.0
+        with:
+          cache: true
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        id: build
+        run: pnpm run build
+
+      - name: Publish next
+        if: github.ref_name == 'next'
+        run: pnpm run next
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish release
+        if: github.ref_name == 'release'
+        run: pnpm run release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get Info
+        id: info
+        run: |
+          publish=$(git rev-parse HEAD)
+          current=${{github.sha}}
+          tags=$(git tag --list --contains $publish)
+          if [ "$current" != "$publish" ] && [ -n "$tags" ]; then
+            echo "versions="$(echo "$tags" | sed 's/@1ssue/{0}@1ssue/g')"" >> $GITHUB_OUTPUT
+          fi
+
+      # ✅ 成功通知
+      - name: Notify Feishu on success
+        if: steps.info.outputs.versions
+        run: node scripts/notify-feishu.js
+        env:
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+          BUILD_STATUS: success
+          BUILD_REPO: ${{ github.repository }}
+          BUILD_REF: ${{ github.ref_name }}
+          BUILD_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+      # ❌ 失败通知
+      - name: Notify Feishu on failure
+        if: failure()
+        run: node scripts/notify-feishu.js
+        env:
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+          BUILD_STATUS: failure
+          BUILD_REPO: ${{ github.repository }}
+          BUILD_REF: ${{ github.ref_name }}
+          BUILD_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
