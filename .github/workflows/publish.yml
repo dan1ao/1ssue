@@ -80,6 +80,11 @@ jobs:
             echo "versions="$(echo "$tags" | sed 's/@1ssue/{0}@1ssue/g')"" >> $GITHUB_OUTPUT
           fi
 
+      - name: Debug git tags
+        run: |
+          git tag --points-at HEAD    # 查看当前 HEAD 上有哪些 tag
+          git log --oneline -5        # 查看最近几次提交
+
       # ✅ 成功通知
       - name: Notify Feishu on success
         if: steps.info.outputs.versions
