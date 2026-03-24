@@ -30,7 +30,7 @@ jobs:
         run: |
           echo "ACCESS_TOKEN=${ACCESS_TOKEN}"
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -57,7 +57,7 @@ jobs:
       - name: Creat .npmrc
         run: |
           cat << EOF > "$HOME/.npmrc"
-            //registry.npmjs.org/:_authToken=${{ secrets.ACCESS_TOKEN }}
+            //registry.npmjs.org/:_authToken=${{ secrets.NPM_ACCESS_TOKEN }}
           EOF
 
       - name: Install dependencies
