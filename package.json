@@ -36,5 +36,6 @@
   },
   "browserslist": [
     "last 2 years and not dead"
-  ]
+  ],
+  "packageManager": "pnpm@10.32.1"
 }
