@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "lerna run build",
-    "beta-version": "lerna version --conventional-commits --conventional-prerelease --yes",
-    "beta-publish": "lerna publish from-git --dist-tag next --preid next --yes",
+    "beta-version": "lerna version --conventional-commits --conventional-prerelease --preid next --yes",
+    "beta-publish": "lerna publish from-git --dist-tag next --yes",
     "beta": "pnpm run build && pnpm run beta-version && pnpm run beta-publish",
     "release-version": "lerna version --conventional-commits --conventional-graduate --yes",
     "release-publish": "lerna publish from-git --yes",

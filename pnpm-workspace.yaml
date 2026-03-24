@@ -1,28 +1,27 @@
 packages:
-  - packages/*
+  - packages/config/*
   - app
 
 # 定义目录和依赖版本号
 catalog:
   # vite 构建相关
-  "vite": "^8.0.1"
-  "@vitejs/plugin-react": "^6.0.1"
+  'vite': '^8.0.1'
+  '@vitejs/plugin-react': '^6.0.1'
   # babel + vite
-  "@babel/core": "^7.29.0"
-  "@rolldown/plugin-babel": "^0.2.2"
+  '@babel/core': '^7.29.0'
+  '@rolldown/plugin-babel': '^0.2.2'
   # babel
-  "babel-plugin-polyfill-corejs3": "^0.14.2"
-  "core-js-pure": "^3.49.0"
+  'babel-plugin-polyfill-corejs3': '^0.14.2'
+  'core-js-pure': '^3.49.0'
   # css + vite
-  "tailwindcss": "^4.2.2"
-  "@tailwindcss/vite": "^4.2.2"
-  "postcss-preset-env": "^11.2.0"
+  'tailwindcss': '^4.2.2'
+  '@tailwindcss/vite': '^4.2.2'
+  'postcss-preset-env': '^11.2.0'
   # react
-  "react": "^19.2.4"
-  "react-dom": "^19.2.4"
-  "@types/react": "^19.2.14"
-  "@types/react-dom": "^19.2.3"
+  'react': '^19.2.4'
+  'react-dom': '^19.2.4'
+  '@types/react': '^19.2.14'
+  '@types/react-dom': '^19.2.3'
   # ts
-  "typescript": "~5.9.3"
-  "@types/node": "^24.12.0"
-
+  'typescript': '~5.9.3'
+  '@types/node': '^24.12.0'

@@ -1,14 +1,13 @@
 {
   "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
   "version": "independent",
-  "packages": ["packages/*"],
+  "packages": ["packages/config/*"],
   "npmClient": "pnpm",
-  "useWorkspaces": true,
   "command": {
     "version": {
       "conventionalCommits": true,
-      "allowBranch": "release",
-      "message": "chore: publish new version %s"
+      "allowBranch": ["release", "next"],
+      "message": "chore: publish new version"
     },
     "publish": {
       "stripPackageKeys": ["devDependencies", "scripts"]
