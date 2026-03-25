@@ -1,0 +1,34 @@
+{
+  "name": "@1ssue/prettier-config",
+  "version": "0.0.0",
+  "author": "dan1ao <foyewy@gmail.com>",
+  "license": "ISC",
+  "type": "module",
+  "files": [
+    "prettier.config.js"
+  ],
+  "main": "./prettier.config.js",
+  "exports": "./prettier.config.js",
+  "scripts": {
+    "only-publish": "pnpm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dan1ao/1ssue"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "maintainers": [
+    {
+      "name": "dan1ao"
+    }
+  ],
+  "peerDependencies": {
+    "prettier": "^3.8.1",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "prettier-plugin-css-order": "^2.2.0",
+    "prettier-plugin-tailwindcss": "^0.7.2"
+  }
+}

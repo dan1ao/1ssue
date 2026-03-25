@@ -9,7 +9,6 @@ on:
       - release
     paths:
       - 'packages/**/*'
-      - 'app/**/*'
       - 'pnpm-lock.yaml'
       - 'package.json'
 

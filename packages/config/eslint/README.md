@@ -6,7 +6,6 @@
 
 ```
 # 如果使用的是 pnpm，需要在.npmrc 文件中新增
-public-hoist-pattern[] = *prettier*
 public-hoist-pattern[] = *eslint*
 ```
 
