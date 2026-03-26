@@ -6,10 +6,10 @@
   "scripts": {
     "build": "lerna run build",
     "next-version": "lerna version --conventional-commits --conventional-prerelease --preid next --yes",
-    "next-publish": "lerna publish from-git --dist-tag next --yes",
+    "next-publish": "lerna publish from-package --dist-tag next --yes",
     "next": "pnpm run build && pnpm run next-version && pnpm run next-publish",
     "release-version": "lerna version --conventional-commits --conventional-graduate --yes",
-    "release-publish": "lerna publish from-git --yes",
+    "release-publish": "lerna publish from-package --yes",
     "release": "pnpm run build && pnpm run release-version && pnpm run release-publish"
   },
   "devDependencies": {
