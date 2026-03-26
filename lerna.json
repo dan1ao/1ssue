@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
   "version": "independent",
-  "packages": ["packages/config/*"],
+  "packages": ["packages/config/*", "packages/utils/*"],
   "npmClient": "pnpm",
   "command": {
     "version": {

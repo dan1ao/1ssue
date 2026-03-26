@@ -1,0 +1,8 @@
+{
+  "extends": ["../../../tsconfig.app-template.json"],
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "dist/types"
+  }
+}

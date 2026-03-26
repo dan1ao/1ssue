@@ -1,0 +1,46 @@
+{
+  "name": "@1ssue/cn",
+  "version": "0.0.0",
+  "author": "dan1a0 <foyewy@gmail.com>",
+  "license": "ISC",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./global": {
+      "types": "./dist/types/global.d.ts"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "maintainers": [
+    {
+      "name": "dan1ao"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dan1ao/1ssue"
+  },
+  "scripts": {
+    "preversion": "vite build"
+  },
+  "devDependencies": {
+    "@1ssue/vite-config": "workspace:^",
+    "vite": "catalog:"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.5.0",
+    "typescript": "catalog:"
+  }
+}

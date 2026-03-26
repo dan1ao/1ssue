@@ -43,6 +43,7 @@
     "es-toolkit": "^1.45.1"
   },
   "peerDependencies": {
+    "typescript": "catalog:",
     "vite": "catalog:",
     "vite-plugin-dts": "^4.5.4"
   }
