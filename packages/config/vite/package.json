@@ -1,0 +1,49 @@
+{
+  "name": "@1ssue/vite-config",
+  "version": "0.0.0",
+  "author": "dan1ao <foyewy@gmail.com>",
+  "license": "ISC",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./lib": {
+      "types": "./dist/types/lib.d.ts",
+      "import": "./dist/lib.js"
+    },
+    "./app": {
+      "types": "./dist/types/app.d.ts",
+      "import": "./dist/app.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dan1ao/1ssue"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "maintainers": [
+    {
+      "name": "dan1ao"
+    }
+  ],
+  "scripts": {
+    "preversion": "vite build"
+  },
+  "dependencies": {
+    "es-toolkit": "^1.45.1"
+  },
+  "peerDependencies": {
+    "vite": "catalog:",
+    "vite-plugin-dts": "^4.5.4"
+  }
+}
