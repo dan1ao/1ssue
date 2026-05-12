@@ -37,6 +37,7 @@
     }
   ],
   "scripts": {
+    "build": "vite build",
     "preversion": "vite build"
   },
   "dependencies": {
