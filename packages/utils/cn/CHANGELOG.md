@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/dan1ao/1ssue/compare/@1ssue/cn@0.1.0...@1ssue/cn@0.1.1) (2026-05-12)
+
+### Bug Fixes
+
+* cn 可选导出 ([6eb9852](https://github.com/dan1ao/1ssue/commit/6eb9852c910a92b245d3a4dbe8785e6cfa17439b))
+
 ## [0.1.0](https://github.com/dan1ao/1ssue/compare/@1ssue/cn@0.1.0-next.0...@1ssue/cn@0.1.0) (2026-03-26)
 
 **Note:** Version bump only for package @1ssue/cn
