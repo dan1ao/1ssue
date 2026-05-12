@@ -1,7 +1,6 @@
 import { version as corejsVersion } from 'core-js-pure/package.json'
 import postcssPresetEnv from 'postcss-preset-env'
 import { defineConfig } from 'vite'
-
 import babel from '@rolldown/plugin-babel'
 import tailwindcss from '@tailwindcss/vite'
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
@@ -16,6 +15,7 @@ export default defineConfig({
     react(),
     babel({
       presets: [
+        // https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react
         reactCompilerPreset(), //https://react.dev/learn/react-compiler/installation
       ],
       plugins: [

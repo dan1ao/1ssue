@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@1ssue/cn": "^0.1.0",
     "react": "catalog:",
     "react-dom": "catalog:",
     "tailwindcss": "catalog:"
   },
   "devDependencies": {
+    "@1ssue/browserslist-config": "^0.1.0",
     "@babel/core": "catalog:",
     "@rolldown/plugin-babel": "catalog:",
     "@tailwindcss/vite": "catalog:",
@@ -29,6 +31,6 @@
     "vite": "catalog:"
   },
   "browserslist": [
-    "last 2 years and not dead"
+    "extends @1ssue/browserslist-config"
   ]
 }

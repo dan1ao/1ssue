@@ -1,18 +1,19 @@
-# `@m1ny/business`
+# `@1ssue/cn`
 
 > TODO: description
 
 ## Install
 
 ```sh
-  pnpm add @m1ny/business
+  pnpm add @1ssue/cn
 ```
 
 ## Usage
 
 ```
 
-import { onFeilianAuth } from '@m1ny/business'
+import cn from '@1ssue/cn'
+import { cn } from '@1ssue/cn'
 
 // TODO: DEMONSTRATE API
 
